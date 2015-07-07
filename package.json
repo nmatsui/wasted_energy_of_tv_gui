@@ -1,0 +1,14 @@
+{
+  "name": "wasted-energy-of-tv",
+  "version": "1.0.0",
+  "description": "wasted energy of tv (viewer)",
+  "main": "index.js",
+  "scripts": {
+    "start": "http-server"
+  },
+  "author": "nobuyuki.matsui@gmail.com",
+  "license": "MIT",
+  "dependencies": {
+    "http-server": "^0.8.0"
+  }
+}
