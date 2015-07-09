@@ -16,17 +16,38 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-    <h1>Wasted energy of TV</h1>
-    <form id="datepick_form" class="form-inline" role="form">
-      <div class="form-group">
-        <label for="target-date" class="sr-only">target date</label>
-        <input id="target_date" type="text" class="from-control" placeholder="target date"/>
-      </div>
-      <button id="submit_btn" type="submit" class="btn btn-primary">View</button>
-    </form>
+  <body>
+    <div class="container">
+      <h1>Wasted energy of TV</h1>
+      <form id="datepick_form" class="datepick_form form-horizontal" role="form">
+        <div class="form-group">
+          <div class="col-sm-11">
+            <label for="target_date" class="sr-only">target date</label>
+            <input id="target_date" type="text" class="target_date form-control" placeholder="target date"/>
+          </div>
+          <div class="col-sm-1">
+            <button type="submit" class="pick_btn btn btn-primary">View</button>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-12 chart" style="height:50px;">
+            <canvas style="background-color:yellow; height:0px;"></canvas>
+          </div>
+        </div>
+      </form>
+      <form class="add_row_fowm form-horizontal" role="form">
+        <div class="form-group">
+          <div class="col-sm-offset-10 col-sm-2">
+            <button type="button" class="add_form_btn btn btn-warning">Add Form</button>
+          </div>
+        </div>
+      </form>
+    </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="js/bootstrap-datepicker.min.js"></script>
+    <script src="js/jcanvas.min.js"></script>
+    <script src="js/test.js"></script>
     <script src="js/main.js"></script>
   </body>
 </html>
