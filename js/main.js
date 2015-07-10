@@ -74,8 +74,9 @@ $(function() {
     console.log(uw);
 
     $.each(watchedList, function(i, item) {
+      console.log(item);
       canvas.drawRect({
-        fillStyle: "rgb(" + i + "," + i + "," + i + ")",
+        fillStyle: decideColor(item),
         x: uw * i,
         y: 0,
         width: uw,
@@ -83,5 +84,16 @@ $(function() {
         fromCenter: false
       }); 
     });
+  }
+
+  function decideColor(item) {
+    var hue;
+    if (item.count == 0) {
+      return "hsl(0, 0%, 0%)";
+    }
+    else {
+      hue = Math.round(item.val / item.count) * 60 - 60;
+      return "hsl(" + hue + ", 100%, 50%)";
+    }
   }
 });
