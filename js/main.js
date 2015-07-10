@@ -1,18 +1,15 @@
 $(function() {
   var form_cnt = 1;
 
-  $.isBlank = function(obj) {
-    return (!obj || $.trim(obj) === "");
-  };
-
   insertFunc($(".datepick_form"));
 
-  $("#add_form_btn").click(function() {
-    console.log("add form");
-    var original = $("#datepick_form_" + form_cnt);
+  $("#duplicate_form_btn").on("click", function() {
+    console.log("duplicate form");
+    var original = $("#datepick_form_1");
+    var last = $(".datepick_form:last");
     form_cnt++;
     
-    var clone = $(original).clone().insertAfter(original);
+    var clone = $(original).clone().insertAfter(last);
     $(clone).attr("id", "datepick_form_" + form_cnt)
             .find("*").each(function(i, elem) {
               $.each(["id", "name", "for"], function(j, item) {
@@ -21,13 +18,15 @@ $(function() {
                 }
               });
             });
+    $(clone).find(".remove_form_btn").removeAttr("disabled");
 
     insertFunc($(clone));
   });
 
   function insertFunc(element) {
     element.on("submit", showChart)
-           .find(".target_date").datepicker({
+           .find(".remove_form_btn").on("click", removeForm);
+    element.find(".target_date").datepicker({
              format: "yyyy/mm/dd",
              orientation: "top auto",
              autoclose: true,
@@ -35,11 +34,11 @@ $(function() {
            });
   }
 
-  function showChart() {
-    console.log(".datepick_form submit");
+  function showChart(e) {
+    console.log("showChart");
     console.log($(this).find(".target_date").val());
     var pickedDate = $(this).find(".target_date").val();
-    if (!($.isBlank(pickedDate))) {
+    if (pickedDate && $.trim(pickedDate) != "") {
       console.log("pickedDate=" + pickedDate);
       watchedList = getWatchedList(pickedDate);
       wrapper = $(this).find(".chart")
@@ -47,6 +46,11 @@ $(function() {
       drawChart(wrapper, canvas, watchedList);
     }
     return false;
+  }
+
+  function removeForm(e) {
+    console.log("removeForm");
+    e.target.closest("form").remove();
   }
 
   function getWatchedList(targetDate) {

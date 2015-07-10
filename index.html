@@ -19,21 +19,24 @@
   <body>
     <div class="container">
       <h1>Wasted energy of TV</h1>
-      <form id="add_form" class="form-horizontal" role="form">
+      <form id="duplicate_form" class="form-horizontal" role="form">
         <div class="form-group">
           <div class="col-sm-12">
-            <button id="add_form_btn" type="button" class="btn btn-warning">Add Form</button>
+            <button id="duplicate_form_btn" type="button" class="btn btn-warning">Add Form</button>
           </div>
         </div>
       </form>
       <form id="datepick_form_1" class="datepick_form form-horizontal" role="form">
         <div class="form-group">
-          <div class="col-sm-11">
+          <div class="col-sm-9">
             <label for="target_date_1" class="sr-only">target date</label>
             <input id="target_date_1" name="target_date_1" type="text" class="target_date form-control" placeholder="target date"/>
           </div>
           <div class="col-sm-1">
             <button id="pick_btn_1" type="submit" class="pick_btn btn btn-primary">View</button>
+          </div>
+          <div class="col-sm-2">
+            <button id="remove_form_btn_1" type="button" class="remove_form_btn btn btn-danger" disabled="true">Remove this</button>
           </div>
         </div>
         <div class="form-group">
