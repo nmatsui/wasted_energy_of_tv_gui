@@ -1,16 +1,41 @@
 $(function() {
+  var form_cnt = 1;
+
   $.isBlank = function(obj) {
     return (!obj || $.trim(obj) === "");
   };
 
-  $(".datepick_form .target_date").datepicker({
-    format: "yyyy/mm/dd",
-    orientation: "top auto",
-    autoclose: true,
-    todayHighlight: true
+  insertFunc($(".datepick_form"));
+
+  $("#add_form_btn").click(function() {
+    console.log("add form");
+    var original = $("#datepick_form_" + form_cnt);
+    form_cnt++;
+    
+    var clone = $(original).clone().insertAfter(original);
+    $(clone).attr("id", "datepick_form_" + form_cnt)
+            .find("*").each(function(i, elem) {
+              $.each(["id", "name", "for"], function(j, item) {
+                if ($(elem).attr(item)) {
+                  $(elem).attr(item, $(elem).attr(item).replace(/_[0-9]+$/, "_" + form_cnt)).val("");
+                }
+              });
+            });
+
+    insertFunc($(clone));
   });
 
-  $(".datepick_form").submit(function() {
+  function insertFunc(element) {
+    element.on("submit", showChart)
+           .find(".target_date").datepicker({
+             format: "yyyy/mm/dd",
+             orientation: "top auto",
+             autoclose: true,
+             todayHighlight: true
+           });
+  }
+
+  function showChart() {
     console.log(".datepick_form submit");
     console.log($(this).find(".target_date").val());
     var pickedDate = $(this).find(".target_date").val();
@@ -19,17 +44,17 @@ $(function() {
       watchedList = getWatchedList(pickedDate);
       wrapper = $(this).find(".chart")
       canvas = $(this).find(".chart canvas")
-      showChart(wrapper, canvas, watchedList);
+      drawChart(wrapper, canvas, watchedList);
     }
     return false;
-  });
+  }
 
   function getWatchedList(targetDate) {
     console.log("getWatchedList");
     return testData;
   }
 
-  function showChart(wrapper, canvas, watchedList) {
+  function drawChart(wrapper, canvas, watchedList) {
     console.log("showChart");
     var w = wrapper.width();
     var h = wrapper.height();
@@ -54,6 +79,5 @@ $(function() {
         fromCenter: false
       }); 
     });
-
   }
 });
