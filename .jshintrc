@@ -5,6 +5,9 @@
   "undef"  : true,
   "latedef": true,
   "globals": {
-    "$": false
+    "$": false,
+    "requirejs": false,
+    "require": false,
+    "define": false
   }
 }
