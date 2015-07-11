@@ -8,8 +8,10 @@ define(["jquery", "app/chart", "app/ajax"], function($, chart, ajax) {
         console.log("pickedDate=" + pickedDate);
         var $wrapper = $target.find(".chart");
         var $canvas = $target.find(".chart canvas");
+        chart.clearChart($wrapper, $canvas);
+        chart.loading($canvas);
         var watchedList = ajax.getWatchedList(pickedDate);
-        chart.drawChart($wrapper, $canvas, watchedList);
+        chart.drawChart($canvas, watchedList);
       }
       return false;
     },
