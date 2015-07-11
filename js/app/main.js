@@ -7,7 +7,7 @@ define(["jquery", "app/handler", "bootstrap", "datepicker"], function($, handler
       $e.on("submit", handler.showChart)
         .find(".remove_form_btn").on("click", handler.removeForm).end()
         .find(".target_date").datepicker({
-           format: "yyyy/mm/dd",
+           format: "yyyy-mm-dd",
            orientation: "top auto",
            autoclose: true,
            todayHighlight: true
