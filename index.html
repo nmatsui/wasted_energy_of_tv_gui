@@ -19,25 +19,39 @@
   </head>
   <body>
     <div class="container">
-      <h1>Wasted energy of TV</h1>
+      <div class="row">
+        <div class="col-xs-12">
+          <h1 class="text-center">Wasted energy of TV</h1>
+        </div>
+      </div>
       <form id="duplicate_form" class="form-horizontal" role="form">
         <div class="form-group">
           <div class="col-sm-12">
-            <button id="duplicate_form_btn" type="button" class="btn btn-warning">Add Form</button>
+            <div class="pad">
+              <button id="duplicate_form_btn" type="button" class="btn btn-warning">Add Form</button>
+            </div>
           </div>
         </div>
       </form>
       <form id="datepick_form_1" class="datepick_form form-horizontal" role="form">
         <div class="form-group">
-          <div class="col-sm-9">
-            <label for="target_date_1" class="sr-only">target date</label>
-            <input id="target_date_1" name="target_date_1" type="text" class="target_date form-control" placeholder="target date"/>
+          <div class="col-sm-8">
+            <div class="pad">
+              <label for="target_date_1" class="sr-only">target date</label>
+              <input id="target_date_1" name="target_date_1" type="text" class="target_date form-control" placeholder="target date"/>
+            </div>
           </div>
-          <div class="col-sm-1">
-            <button id="pick_btn_1" type="submit" class="pick_btn btn btn-primary">View</button>
-          </div>
-          <div class="col-sm-2">
-            <button id="remove_form_btn_1" type="button" class="remove_form_btn btn btn-danger" disabled="true">Remove this</button>
+          <div class="col-sm-4">
+            <div class="pad">
+              <div class="row">
+                <div class="col-xs-6">
+                  <button id="pick_btn_1" type="submit" class="pick_btn btn btn-block btn-primary">View</button>
+                </div>
+                <div class="col-xs-6">
+                  <button id="remove_form_btn_1" type="button" class="remove_form_btn btn btn-block btn-danger" disabled="true">Remove</button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <div class="form-group">
