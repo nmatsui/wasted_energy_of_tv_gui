@@ -38,7 +38,6 @@ define(["jquery"], function($) {
   
   return {
     getWatchedList: function(targetDate) {
-      console.log("getWatchedList");
       var startDate = new Date(targetDate + "T00:00:00+09:00");
       var endDate = new Date(startDate);
       endDate.setDate(endDate.getDate() + 1);

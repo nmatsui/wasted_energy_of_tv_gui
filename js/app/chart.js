@@ -50,7 +50,6 @@ define(["jquery", "jcanvas"], function($) {
 
   return {
     clearChart: function($wrapper, $canvas) {
-      console.log("clearChart");
       var w = $wrapper.width();
       var h = $wrapper.height();
       $canvas.attr({"width":w, "height":h});
@@ -59,7 +58,6 @@ define(["jquery", "jcanvas"], function($) {
       $canvas.clearCanvas();
     },
     loading: function($canvas) {
-      console.log("loading");
       var color = "hsl(0, 0%, 10%)";
       $canvas.drawText({
         fillStyle: color,
@@ -73,10 +71,8 @@ define(["jquery", "jcanvas"], function($) {
       });
     },
     drawChart: function($canvas, watchedList) {
-      console.log("showChart");
       var w = $canvas.width();
       var h = $canvas.height();
-      console.log("w:" + w + " h:" + h);
 
       $canvas.clearCanvas();
 

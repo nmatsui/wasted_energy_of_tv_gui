@@ -17,7 +17,6 @@ define(["jquery", "app/handler", "bootstrap", "datepicker"], function($, handler
     setHandler($(".datepick_form")); 
 
     $("#duplicate_form_btn").on("click", function() {
-      console.log("duplicate form");
       var $original = $("#datepick_form_1");
       var $last = $(".datepick_form:last");
       form_cnt++;
