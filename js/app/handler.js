@@ -15,7 +15,9 @@ define(["jquery", "app/chart", "app/ajax"], function($, chart, ajax) {
       return false;
     },
     removeForm: function($e) {
-      $e.target.closest("form").remove();
+      var formid = $($e.target).attr("formid");
+      $("#"+formid).remove();
+      //$e.target.closest("form").remove();
     }
   };
 });
