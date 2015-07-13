@@ -9,8 +9,7 @@ define(["jquery", "app/chart", "app/ajax"], function($, chart, ajax) {
         var $canvas = $target.find(".chart canvas");
         chart.clearChart($wrapper, $canvas);
         chart.loading($canvas);
-        var watchedList = ajax.getWatchedList(pickedDate);
-        chart.drawChart($canvas, watchedList);
+        ajax.getWatchedList(pickedDate, chart.drawChart, $canvas);
       }
       return false;
     },

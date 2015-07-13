@@ -3,21 +3,19 @@ define(["jquery"], function($) {
 
   var ENDPOINT = "http://wasted-energy-of-tv-iot.mybluemix.net/day_data";
 
-  function getDateData(startDate, endDate) {
+  function getDateData(startDate, endDate, drawFunc, $drawElem) {
     var result;
     $.ajax({
       type: "GET",
       url: ENDPOINT,
       dataType: "json",
-      async: false,
       data: {
         "st": formatISODate(startDate),
         "ed": formatISODate(endDate)
       }
     }).done(function (data) {
-      result = data;
+      drawFunc($drawElem, data);
     });
-    return result;
   }
 
   function formatISODate(dt) {
@@ -37,12 +35,12 @@ define(["jquery"], function($) {
   }
   
   return {
-    getWatchedList: function(targetDate) {
+    getWatchedList: function(targetDate, drawFunc, $drawElem) {
       var startDate = new Date(targetDate + "T00:00:00+09:00");
       var endDate = new Date(startDate);
       endDate.setDate(endDate.getDate() + 1);
 
-      var result = getDateData(startDate, endDate);
+      var result = getDateData(startDate, endDate, drawFunc, $drawElem);
       return result;
     }
   };
