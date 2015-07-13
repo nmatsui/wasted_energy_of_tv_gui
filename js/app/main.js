@@ -24,7 +24,7 @@ define(["jquery", "app/handler", "bootstrap", "datepicker"], function($, handler
       var $clone = $original.clone().insertAfter($last);
       $clone.attr("id", "datepick_form_" + form_cnt)
             .find("*").each(function(ignore_1, e) {
-              $.each(["id", "name", "for"], function(ignore_2, item) {
+              $.each(["id", "name", "for","formid"], function(ignore_2, item) {
                 var attr = $(e).attr(item);
                 if (attr) {
                   $(e).attr(item, attr.replace(/_[0-9]+$/, "_" + form_cnt));
