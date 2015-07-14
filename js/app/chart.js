@@ -1,5 +1,6 @@
 define(["jquery", "jcanvas"], function($) {
   "use strict";
+  var SCALE = 2.0; 
   function decideColor(item) {
     if (item.count === 0) {
       return "hsl(0, 0%, 50%)";
@@ -50,18 +51,18 @@ define(["jquery", "jcanvas"], function($) {
 
   return {
     clearChart: function($wrapper, $canvas) {
-      var w = $wrapper.width();
-      var h = $wrapper.height();
+      var w = $wrapper.width() * SCALE;
+      var h = $wrapper.height() * SCALE;
       $canvas.attr({"width":w, "height":h});
-      $canvas.width(w);
-      $canvas.height(h);
+      $canvas.width(w/SCALE);
+      $canvas.height(h/SCALE);
       $canvas.clearCanvas();
     },
     loading: function($canvas) {
       var color = "hsl(0, 0%, 10%)";
       $canvas.drawText({
         fillStyle: color,
-        fontSize: 24,
+        fontSize: 48,
         fontFamily: "Arial",
         align: "left",
         respectAlign: true,
@@ -81,10 +82,10 @@ define(["jquery", "jcanvas"], function($) {
 
         $canvas.drawRect({
           fillStyle: decideColor(item),
-          x: i + offset.x + offset.m,
-          y: 0 + offset.y,
-          width: 1,
-          height: offset.h,
+          x: (i + offset.x + offset.m) * SCALE,
+          y: offset.y * SCALE,
+          width: SCALE,
+          height: offset.h * SCALE,
           fromCenter: false
         }); 
         if (i % 30 === 0) {
@@ -92,17 +93,19 @@ define(["jquery", "jcanvas"], function($) {
           $canvas.drawLine({
             strokeStyle: color,
             strokeWidth: 1,
-            x1: i + offset.x + offset.m, y1: offset.y + offset.h - 5,
-            x2: i + offset.x + offset.m, y2: offset.y + offset.h + 5
+            x1: (i + offset.x + offset.m) * SCALE,
+            y1: (offset.y + offset.h - 5) * SCALE,
+            x2: (i + offset.x + offset.m) * SCALE,
+            y2: (offset.y + offset.h + 5) * SCALE
           });
           $canvas.drawText({
             fillStyle: color,
-            fontSize: 12,
+            fontSize: 24,
             fontFamily: "Arial",
             align: "left",
             respectAlign: true,
-            x: i + offset.x + offset.m,
-            y: offset.y + offset.h + 15,
+            x: (i + offset.x + offset.m) * SCALE,
+            y: (offset.y + offset.h + 15) * SCALE,
             text: "" + i / 30 + "時"
           });
         }
