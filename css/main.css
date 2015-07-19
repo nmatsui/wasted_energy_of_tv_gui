@@ -1,8 +1,17 @@
+span.auto_poweroff_text {
+  font-size: large;
+}
 canvas.canvas {
   height: 0px;
 }
 div.chart {
   height: 100px;
+}
+div.modal-body {
+  overflow: auto;
+}
+div.alert {
+  display: none;
 }
 @media screen and (max-width: 767px) {
   .container {
