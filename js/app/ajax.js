@@ -51,8 +51,6 @@ define(["jquery"], function($) {
         type: "POST",
         url: ENDPOINT_CONFIG,
         data: data
-      }).done(function(data) {
-        console.log(data);
       });
     }
   };

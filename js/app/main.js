@@ -17,7 +17,6 @@ define(["jquery", "app/handler", "app/ajax", "bootstrap", "datepicker"], functio
     setHandler($(".datepick_form"));
 
     function setAutoPoweroffPeriod(period) {
-      console.log(period);
       var msg = "";
       if (period.enable) {
         msg = period.minutes + " minutes";
