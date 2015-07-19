@@ -1,22 +1,8 @@
 define(["jquery"], function($) {
   "use strict";
 
-  var ENDPOINT = "http://wasted-energy-of-tv-iot.mybluemix.net/day_data";
-
-  function getDateData(startDate, endDate, drawFunc, $drawElem) {
-    var result;
-    $.ajax({
-      type: "GET",
-      url: ENDPOINT,
-      dataType: "json",
-      data: {
-        "st": formatISODate(startDate),
-        "ed": formatISODate(endDate)
-      }
-    }).done(function (data) {
-      drawFunc($drawElem, data);
-    });
-  }
+  var ENDPOINT_DAY_DATA = "http://wasted-energy-of-tv-iot.mybluemix.net/day_data";
+  var ENDPOINT_CONFIG = "http://wasted-energy-of-tv-iot.mybluemix.net/config";
 
   function formatISODate(dt) {
     var yyyy = dt.getFullYear();
@@ -40,8 +26,34 @@ define(["jquery"], function($) {
       var endDate = new Date(startDate);
       endDate.setDate(endDate.getDate() + 1);
 
-      var result = getDateData(startDate, endDate, drawFunc, $drawElem);
-      return result;
+      $.ajax({
+        type: "GET",
+        url: ENDPOINT_DAY_DATA,
+        dataType: "json",
+        data: {
+          "st": formatISODate(startDate),
+          "ed": formatISODate(endDate)
+        }
+      }).done(function (data) {
+        drawFunc($drawElem, data);
+      });
+    },
+    getConfig: function(callback) {
+      $.ajax({
+        type: "GET",
+        url: ENDPOINT_CONFIG
+      }).done(function (data) {
+        callback(data);
+      });
+    },
+    postConfig: function(data) {
+      $.ajax({
+        type: "POST",
+        url: ENDPOINT_CONFIG,
+        data: data
+      }).done(function(data) {
+        console.log(data);
+      });
     }
   };
 });

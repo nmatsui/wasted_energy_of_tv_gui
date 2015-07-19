@@ -24,15 +24,11 @@
           <h1 class="text-center">Wasted energy of TV</h1>
         </div>
       </div>
-      <form id="duplicate_form" class="form-horizontal" role="form">
-        <div class="form-group">
-          <div class="col-sm-12">
-            <div class="pad">
-              <button id="duplicate_form_btn" type="button" class="btn btn-warning">Add Form</button>
-            </div>
-          </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <span class="auto_poweroff_text pad">auto power off : <span id="auto_poweroff_indicator">...</span> <a href="#" data-toggle="modal" data-target="#auto_poweroff_modal">Change</a></span>
         </div>
-      </form>
+      </div>
       <form id="datepick_form_1" class="datepick_form form-horizontal" role="form">
         <div class="form-group">
           <div class="col-sm-8">
@@ -60,6 +56,58 @@
           </div>
         </div>
       </form>
+      <form id="duplicate_form" class="form-horizontal" role="form">
+        <div class="form-group">
+          <div class="col-xs-12">
+            <div class="pad">
+              <button id="duplicate_form_btn" type="button" class="btn btn-info">Add Form</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal fade" id="auto_poweroff_modal" tabindex="-1" role="dialog" aria-labelledby="staticModalLabel" aria-hidden="true" data-show="true" data-keyboard="false" data-backdrop="static">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">auto power off setting</h4>
+          </div>
+          <div class="modal-body">
+            <form id="auto_poweroff_form" role="form">
+              <div class="form-group">
+                <div class="col-sm-12">
+                  <div id="auto_poweroff_alert" class="alert alert-warning" role="alert"></div>
+                </div>
+                <div class="col-sm-12">
+                  <div class="btn-group" data-toggle="buttons">
+                    <label id="auto_poweroff_label_true" class="btn btn-default">
+                      <input type="radio" name="auto_poweroff_options" value="true"> ON
+                    </label>
+                    <label id="auto_poweroff_label_false" class="btn btn-default active">
+                      <input type="radio" name="auto_poweroff_options" value="false" checked="true"> OFF
+                   </label>
+                  </div>
+                </div>
+                <div class="col-sm-12">
+                  <label for="auto_poweroff_minutes" class="control-label">auto power off minutes</label>
+                  <input id="auto_poweroff_minutes" name="auto_poweroff_minutes" type="text" class="form-control" placeholder="auto power off minutes" />
+                </div>
+                <div class="col-sm-4 col-sm-offset-8">
+                  <div class="row">
+                    <div class="col-xs-6">
+                      <button id="auto_poweroff_submit" type="button" class="btn btn-block btn-success">OK</button>
+                    </div>
+                    <div class="col-xs-6">
+                      <button type="button" class="btn btn-block btn-default" data-dismiss="modal">close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
     <script src="js/lib/require.js" data-main="js/app"></script>
   </body>

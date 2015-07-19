@@ -1,4 +1,4 @@
-define(["jquery", "app/handler", "bootstrap", "datepicker"], function($, handler) {
+define(["jquery", "app/handler", "app/ajax", "bootstrap", "datepicker"], function($, handler, ajax) {
   "use strict";
   $(function() {
     var form_cnt = 1;
@@ -14,7 +14,31 @@ define(["jquery", "app/handler", "bootstrap", "datepicker"], function($, handler
       });
     }
 
-    setHandler($(".datepick_form")); 
+    setHandler($(".datepick_form"));
+
+    function setAutoPoweroffPeriod(period) {
+      console.log(period);
+      var msg = "";
+      if (period.enable) {
+        msg = period.minutes + " minutes";
+        $("#auto_poweroff_minutes").val(period.minutes);
+        $("#auto_poweroff_label_true").addClass("active");
+        $("#auto_poweroff_label_false").removeClass("active");
+        $("input[name=auto_poweroff_options]:eq(0)").prop("checked", true);
+      }
+      else {
+        msg = "disabled";
+        $("#auto_poweroff_minutes").val("");
+        $("#auto_poweroff_label_true").removeClass("active");
+        $("#auto_poweroff_label_false").addClass("active");
+        $("input[name=auto_poweroff_options]:eq(1)").prop("checked", true);
+      }
+      $("#auto_poweroff_indicator").html(msg);
+    }
+
+    ajax.getConfig(function(data) {
+      setAutoPoweroffPeriod(data.period);
+    });
 
     $("#duplicate_form_btn").on("click", function() {
       var $original = $("#datepick_form_1");
@@ -34,6 +58,25 @@ define(["jquery", "app/handler", "bootstrap", "datepicker"], function($, handler
             });
       $clone.find(".remove_form_btn").removeAttr("disabled");
       setHandler($clone);
+    });
+    
+    $("#auto_poweroff_submit").on("click", function() {
+      var enable = ($("input[name=auto_poweroff_options]:checked").val() === "true") ? true : false;
+      var minutes = $("#auto_poweroff_minutes").val();
+      if (enable && !minutes.match(/^\d+$/)) {
+        $("#auto_poweroff_alert").html("input positive integer").show();
+        return;
+      }
+
+      var msg = {period:{}};
+      msg.period.enable = enable;
+      if (enable) {
+        msg.period.minutes = minutes;
+      }
+      ajax.postConfig(msg);
+      setAutoPoweroffPeriod(msg.period);
+      $("#auto_poweroff_alert").html("").hide();
+      $("#auto_poweroff_modal").modal("hide");
     });
   });
 });
